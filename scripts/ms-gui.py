@@ -5,7 +5,7 @@ Author: Yuhuang Hu
 Email : duguyue100@gmail.com
 """
 
-from __future__ import print_function
+# from __future__ import print_function
 import argparse
 
 try:
@@ -15,7 +15,10 @@ except ImportError:
     from PyQt5 import QtCore
     from PyQt5.QtWidgets import QWidget, QApplication, QGridLayout
 
-from minesweeper import MSGame, gui
+import sys
+sys.path.append("..")
+from minesweeper.msgame import MSGame
+from minesweeper import gui
 
 
 def ms_game_main(board_width, board_height, num_mines, port, ip_add):

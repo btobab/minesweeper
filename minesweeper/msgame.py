@@ -4,9 +4,9 @@ Author: Yuhuang Hu
 Email : duguyue100@gmail.com
 """
 
-from __future__ import print_function
+# from __future__ import print_function
 import socket
-from minesweeper.msboard import MSBoard
+import minesweeper.msboard as M
 
 
 class MSGame(object):
@@ -101,7 +101,7 @@ class MSGame(object):
         -------
         board : MSBoard
         """
-        return MSBoard(board_width, board_height, num_mines)
+        return M.MSBoard(board_width, board_height, num_mines)
 
     def check_move(self, move_type, move_x, move_y):
         """Check if a move is valid.

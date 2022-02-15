@@ -13,26 +13,28 @@ except ImportError:
     from PyQt5 import QtGui, QtCore
     from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QHBoxLayout
     from PyQt5.QtWidgets import QPushButton, QLCDNumber
+    from PyQt5.QtGui import QMouseEvent
 
-import minesweeper
+from minesweeper import PACKAGE_IMGS_PATH
 
-FLAG_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "flag.png")
-QUESTION_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "question.png")
-BOOM_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "boom.png")
-EMPTY_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "blue_circle.png")
-NUMBER_PATHS = [join(minesweeper.PACKAGE_IMGS_PATH, "zero.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "one.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "two.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "three.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "four.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "five.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "six.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "seven.png"),
-                join(minesweeper.PACKAGE_IMGS_PATH, "eight.png")]
-WIN_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "win.png")
-LOSE_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "lose.png")
-CONTINUE_PATH = join(minesweeper.PACKAGE_IMGS_PATH, "continue.png")
+FLAG_PATH = join(PACKAGE_IMGS_PATH, "flag.png")
+QUESTION_PATH = join(PACKAGE_IMGS_PATH, "question.png")
+BOOM_PATH = join(PACKAGE_IMGS_PATH, "boom.png")
+EMPTY_PATH = join(PACKAGE_IMGS_PATH, "blue_circle.png")
+NUMBER_PATHS = [join(PACKAGE_IMGS_PATH, "zero.png"),
+                join(PACKAGE_IMGS_PATH, "one.png"),
+                join(PACKAGE_IMGS_PATH, "two.png"),
+                join(PACKAGE_IMGS_PATH, "three.png"),
+                join(PACKAGE_IMGS_PATH, "four.png"),
+                join(PACKAGE_IMGS_PATH, "five.png"),
+                join(PACKAGE_IMGS_PATH, "six.png"),
+                join(PACKAGE_IMGS_PATH, "seven.png"),
+                join(PACKAGE_IMGS_PATH, "eight.png")]
+WIN_PATH = join(PACKAGE_IMGS_PATH, "win.png")
+LOSE_PATH = join(PACKAGE_IMGS_PATH, "lose.png")
+CONTINUE_PATH = join(PACKAGE_IMGS_PATH, "continue.png")
 
+xrange = range
 
 class ControlWidget(QWidget):
     """Control widget for showing state of the game."""
@@ -126,7 +128,6 @@ class GameWidget(QWidget):
             self.ctrl_wg.reset_button.setIcon(QtGui.QIcon(CONTINUE_PATH))
         elif self.ms_game.game_status == 1:
             self.ctrl_wg.reset_button.setIcon(QtGui.QIcon(WIN_PATH))
-            self.timer.stop()
         elif self.ms_game.game_status == 0:
             self.ctrl_wg.reset_button.setIcon(QtGui.QIcon(LOSE_PATH))
             self.timer.stop()
@@ -270,55 +271,3 @@ class RemoteControlThread(QtCore.QThread):
             elif self.ms_game.game_status == 0:
                 self.ms_game.tcp_send("[MESSAGE] YOU LOSE!\n")
                 self.ms_game.tcp_close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
